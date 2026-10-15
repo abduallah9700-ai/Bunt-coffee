@@ -1,0 +1,1125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bunt Coffee — More Than Just Coffee</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+    <style>
+        /* ===== RESET & ROOT VARIABLES ===== */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --maroon: #5C1625;
+            --maroon-hover: #48111D;
+            --maroon-accent: #722F37;
+            --cream-bg: #F9F1E6;
+            --about-bg: #F5EDE2;
+            --card-border: #EFE4D6;
+            --dark-brown: #2C1810;
+            --text-muted: #7A6858;
+            --text-light: #9B8775;
+            --white: #FFFFFF;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--dark-brown);
+            background: #FFFFFF;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* ===== NAVIGATION BAR ===== */
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 60px;
+            background: #FFFFFF;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 1px 10px rgba(0,0,0,0.04);
+        }
+
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+        }
+
+        .brand-logo {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 1.5px solid var(--maroon);
+            box-shadow: 0 2px 8px rgba(92, 22, 37, 0.15);
+            transition: transform 0.3s;
+        }
+
+        .brand-logo:hover {
+            transform: scale(1.04);
+        }
+
+        .navbar-nav {
+            display: flex;
+            align-items: center;
+            gap: 48px;
+            list-style: none;
+        }
+
+        .navbar-nav a {
+            font-size: 14.5px;
+            font-weight: 500;
+            color: var(--dark-brown);
+            position: relative;
+            padding: 6px 0;
+            transition: color 0.25s;
+        }
+
+        .navbar-nav a:hover {
+            color: var(--maroon);
+        }
+
+        .navbar-nav a.active {
+            color: var(--maroon);
+            font-weight: 600;
+        }
+
+        .navbar-nav a.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: -2px;
+            right: -2px;
+            height: 2px;
+            background: var(--maroon);
+            border-radius: 2px;
+        }
+
+        .btn-visit {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            background: var(--maroon);
+            color: #FFFFFF;
+            padding: 10px 24px;
+            border-radius: 26px;
+            font-size: 13.5px;
+            font-weight: 600;
+            letter-spacing: 0.2px;
+            transition: all 0.25s ease;
+            box-shadow: 0 4px 14px rgba(92, 22, 37, 0.25);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-visit:hover {
+            background: var(--maroon-hover);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 18px rgba(92, 22, 37, 0.35);
+        }
+
+        .btn-visit svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero-section {
+            position: relative;
+            background: #1F140E;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .hero-banner-container {
+            max-width: 1320px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .hero-banner-img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Interactive hotspot over 'Explore Our Menu' button in banner */
+        .hero-cta-hotspot {
+            position: absolute;
+            left: 7.8%;
+            bottom: 12.5%;
+            width: 17%;
+            height: 12%;
+            border-radius: 24px;
+            cursor: pointer;
+            z-index: 5;
+            transition: box-shadow 0.3s, transform 0.2s;
+            outline: none;
+        }
+
+        .hero-cta-hotspot:hover {
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.35);
+            transform: scale(1.02);
+        }
+
+        /* ===== MENU SECTION ===== */
+        .menu-section {
+            background-color: var(--cream-bg);
+            padding: 68px 30px 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .leaf-left {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 140px;
+            height: auto;
+            pointer-events: none;
+            opacity: 0.85;
+        }
+
+        .leaf-right {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 110px;
+            height: auto;
+            pointer-events: none;
+            opacity: 0.85;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 32px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .section-pill-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 11.5px;
+            font-weight: 700;
+            letter-spacing: 2.5px;
+            color: var(--maroon);
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .section-pill-tag::before,
+        .section-pill-tag::after {
+            content: '';
+            width: 26px;
+            height: 1.5px;
+            background: var(--maroon);
+            opacity: 0.6;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 38px;
+            font-weight: 700;
+            color: var(--dark-brown);
+            margin-bottom: 6px;
+            letter-spacing: -0.5px;
+        }
+
+        .section-subtitle {
+            font-size: 14px;
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+
+        /* Filter Tabs */
+        .filter-tabs {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 38px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .filter-btn {
+            background: transparent;
+            border: none;
+            padding: 8px 24px;
+            border-radius: 22px;
+            font-family: 'Inter', sans-serif;
+            font-size: 13.5px;
+            font-weight: 500;
+            color: var(--dark-brown);
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .filter-btn:hover {
+            color: var(--maroon);
+        }
+
+        .filter-btn.active {
+            background: var(--maroon);
+            color: #FFFFFF;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(92, 22, 37, 0.25);
+        }
+
+        /* Drink Cards Grid */
+        .drinks-container {
+            max-width: 1040px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .drinks-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+        }
+
+        .drink-card {
+            background: #FFFFFF;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 3px 14px rgba(44, 24, 16, 0.06);
+            border: 1px solid var(--card-border);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.3s;
+        }
+
+        .drink-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 24px rgba(44, 24, 16, 0.12);
+        }
+
+        .drink-card-image {
+            width: 100%;
+            height: 140px;
+            overflow: hidden;
+            background: #EFE4D6;
+        }
+
+        .drink-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .drink-card:hover .drink-card-image img {
+            transform: scale(1.05);
+        }
+
+        .drink-card-info {
+            padding: 14px 10px 18px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            justify-content: space-between;
+        }
+
+        .drink-card-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--dark-brown);
+            margin-bottom: 4px;
+        }
+
+        .drink-card-desc {
+            font-size: 11px;
+            line-height: 1.4;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+            min-height: 32px;
+        }
+
+        .drink-card-price {
+            font-size: 14.5px;
+            font-weight: 700;
+            color: var(--maroon);
+        }
+
+        /* ===== ABOUT SECTION ===== */
+        .about-section {
+            background-color: var(--about-bg);
+            padding: 72px 40px 84px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-container {
+            max-width: 1060px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+        }
+
+        .about-text-column {
+            flex: 1;
+            max-width: 480px;
+        }
+
+        .about-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 42px;
+            font-weight: 800;
+            color: var(--dark-brown);
+            margin-bottom: 20px;
+            letter-spacing: -0.5px;
+        }
+
+        .about-p {
+            font-size: 13.5px;
+            line-height: 1.7;
+            color: #4A3A2F;
+            margin-bottom: 16px;
+        }
+
+        .about-p strong {
+            font-weight: 700;
+            color: var(--dark-brown);
+        }
+
+        /* Features Row */
+        .features-grid {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 32px;
+            padding-top: 10px;
+        }
+
+        .feature-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            flex: 1;
+            padding: 0 10px;
+            position: relative;
+        }
+
+        .feature-box:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 20%;
+            height: 60%;
+            width: 1px;
+            background: #D8C7B5;
+        }
+
+        .feature-icon-svg {
+            width: 28px;
+            height: 28px;
+            margin-bottom: 8px;
+            color: var(--maroon);
+        }
+
+        .feature-name {
+            font-size: 11.5px;
+            font-weight: 600;
+            color: var(--dark-brown);
+            line-height: 1.35;
+        }
+
+        /* Right column composition */
+        .about-image-column {
+            flex: 1;
+            max-width: 490px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .about-composition-img {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            transition: transform 0.3s;
+        }
+
+        .about-composition-img:hover {
+            transform: scale(1.01);
+        }
+
+        /* ===== VISIT US MODAL ===== */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(44, 24, 16, 0.6);
+            backdrop-filter: blur(4px);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-overlay.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-card {
+            background: #FFFFFF;
+            border-radius: 16px;
+            max-width: 440px;
+            width: 90%;
+            padding: 32px 28px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            text-align: center;
+            transform: scale(0.92);
+            transition: transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+            position: relative;
+        }
+
+        .modal-overlay.open .modal-card {
+            transform: scale(1);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            background: none;
+            border: none;
+            font-size: 22px;
+            color: var(--text-muted);
+            cursor: pointer;
+            padding: 4px;
+        }
+
+        .modal-logo {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            margin: 0 auto 14px;
+            border: 2px solid var(--maroon);
+        }
+
+        .modal-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            color: var(--dark-brown);
+            margin-bottom: 8px;
+        }
+
+        .modal-desc {
+            font-size: 13.5px;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .modal-info-list {
+            text-align: left;
+            background: var(--cream-bg);
+            border-radius: 10px;
+            padding: 16px;
+            margin-bottom: 20px;
+            font-size: 13px;
+        }
+
+        .modal-info-row {
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .modal-info-row:last-child {
+            margin-bottom: 0;
+        }
+
+        /* ===== RESPONSIVE MEDIA QUERIES ===== */
+        @media (max-width: 992px) {
+            .navbar {
+                padding: 12px 28px;
+            }
+
+            .navbar-nav {
+                gap: 28px;
+            }
+
+            .drinks-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .about-container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .about-text-column {
+                max-width: 100%;
+            }
+
+            .about-image-column {
+                max-width: 440px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 10px 18px;
+            }
+
+            .navbar-nav {
+                gap: 18px;
+            }
+
+            .drinks-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 14px;
+            }
+
+            .section-title {
+                font-size: 30px;
+            }
+
+            .about-title {
+                font-size: 32px;
+            }
+
+            .features-grid {
+                flex-wrap: wrap;
+                gap: 16px;
+            }
+
+            .feature-box:not(:last-child)::after {
+                display: none;
+            }
+
+            .feature-box {
+                flex: 0 0 45%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .drinks-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ===== SOCIAL FOOTER ===== */
+        .social-footer {
+            background: var(--dark-brown);
+            padding: 50px 40px 32px;
+            text-align: center;
+        }
+
+        .footer-logo {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin: 0 auto 14px;
+            border: 2px solid rgba(196, 155, 99, 0.5);
+        }
+
+        .footer-tagline {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            color: #C49B63;
+            margin-bottom: 6px;
+        }
+
+        .footer-sub {
+            font-size: 12.5px;
+            color: #9B8775;
+            margin-bottom: 28px;
+            letter-spacing: 0.3px;
+        }
+
+        .social-icons {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 18px;
+            margin-bottom: 32px;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            transition: transform 0.25s, box-shadow 0.25s, background 0.25s;
+            position: relative;
+        }
+
+        .social-link svg {
+            width: 26px;
+            height: 26px;
+        }
+
+        /* TikTok */
+        .social-link.tiktok {
+            background: #010101;
+            border: 1.5px solid #2C2C2C;
+        }
+        .social-link.tiktok:hover {
+            background: #1a1a1a;
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+        }
+
+        /* Instagram */
+        .social-link.instagram {
+            background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+            border: none;
+        }
+        .social-link.instagram:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(214, 36, 159, 0.5);
+        }
+
+        /* WhatsApp */
+        .social-link.whatsapp {
+            background: #25D366;
+            border: none;
+        }
+        .social-link.whatsapp:hover {
+            background: #1ebe5a;
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4);
+        }
+
+        .social-label {
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 10px;
+            font-weight: 600;
+            color: #9B8775;
+            white-space: nowrap;
+            letter-spacing: 0.5px;
+        }
+
+        .footer-divider {
+            width: 60px;
+            height: 1px;
+            background: rgba(196, 155, 99, 0.3);
+            margin: 16px auto 20px;
+        }
+
+        .footer-copy {
+            font-size: 11.5px;
+            color: #5C4A3A;
+            letter-spacing: 0.3px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== NAVIGATION BAR ===== -->
+    <header class="navbar">
+        <a href="#hero" class="navbar-brand">
+            <img src="images/bunt-logo.jpg" alt="Bunt Coffee Logo" class="brand-logo">
+        </a>
+
+        <ul class="navbar-nav">
+            <li><a href="#hero" class="active">Home</a></li>
+            <li><a href="#menu">Menu</a></li>
+            <li><a href="#about">About</a></li>
+        </ul>
+
+        <button class="btn-visit" id="openVisitModal">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17 8h1a4 4 0 1 1 0 8h-1"/>
+                <path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V8z"/>
+                <line x1="6" y1="2" x2="6" y2="4"/>
+                <line x1="10" y1="2" x2="10" y2="4"/>
+                <line x1="14" y1="2" x2="14" y2="4"/>
+            </svg>
+            Visit Us
+        </button>
+    </header>
+
+    <!-- ===== HERO BANNER SECTION ===== -->
+    <section class="hero-section" id="hero">
+        <div class="hero-banner-container">
+            <img src="images/hero-banner-exact.jpg" alt="More Than Just Coffee - Bunt Coffee" class="hero-banner-img">
+            <!-- Clickable hotspot over the 'Explore Our Menu' button -->
+            <a href="#menu" class="hero-cta-hotspot" title="Explore Our Menu"></a>
+        </div>
+    </section>
+
+    <!-- ===== SIGNATURE DRINKS MENU SECTION ===== -->
+    <section class="menu-section" id="menu">
+        <img src="images/menu-leaf-left.jpg" alt="" class="leaf-left">
+        <img src="images/menu-leaf-right.jpg" alt="" class="leaf-right">
+
+        <div class="section-header">
+            <div class="section-pill-tag">Our Menu</div>
+            <h2 class="section-title">Signature Drinks</h2>
+            <p class="section-subtitle">Crafted with passion. Served with care.</p>
+        </div>
+
+        <!-- Filter Tabs -->
+        <div class="filter-tabs">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="coffee">Coffee</button>
+            <button class="filter-btn" data-filter="non-coffee">Non-Coffee</button>
+            <button class="filter-btn" data-filter="specials">Specials</button>
+        </div>
+
+        <!-- 5 Signature Drink Cards -->
+        <div class="drinks-container">
+            <div class="drinks-grid">
+                
+                <!-- 1. Latte -->
+                <div class="drink-card" data-category="coffee">
+                    <div class="drink-card-image">
+                        <img src="images/card-latte.jpg" alt="Latte">
+                    </div>
+                    <div class="drink-card-info">
+                        <div>
+                            <h3 class="drink-card-name">Latte</h3>
+                            <p class="drink-card-desc">Smooth espresso with steamed milk.</p>
+                        </div>
+                        <div class="drink-card-price">$3.50</div>
+                    </div>
+                </div>
+
+                <!-- 2. Iced Coffee -->
+                <div class="drink-card" data-category="coffee">
+                    <div class="drink-card-image">
+                        <img src="images/card-iced-coffee.jpg" alt="Iced Coffee">
+                    </div>
+                    <div class="drink-card-info">
+                        <div>
+                            <h3 class="drink-card-name">Iced Coffee</h3>
+                            <p class="drink-card-desc">Chilled, bold and refreshing.</p>
+                        </div>
+                        <div class="drink-card-price">$3.00</div>
+                    </div>
+                </div>
+
+                <!-- 3. Cappuccino -->
+                <div class="drink-card" data-category="coffee">
+                    <div class="drink-card-image">
+                        <img src="images/card-cappuccino.jpg" alt="Cappuccino">
+                    </div>
+                    <div class="drink-card-info">
+                        <div>
+                            <h3 class="drink-card-name">Cappuccino</h3>
+                            <p class="drink-card-desc">Espresso, steamed milk, velvety foam.</p>
+                        </div>
+                        <div class="drink-card-price">$3.50</div>
+                    </div>
+                </div>
+
+                <!-- 4. Caramel Macchiato -->
+                <div class="drink-card" data-category="coffee specials">
+                    <div class="drink-card-image">
+                        <img src="images/card-caramel-macchiato.jpg" alt="Caramel Macchiato">
+                    </div>
+                    <div class="drink-card-info">
+                        <div>
+                            <h3 class="drink-card-name">Caramel Macchiato</h3>
+                            <p class="drink-card-desc">Sweet, smooth, irresistible.</p>
+                        </div>
+                        <div class="drink-card-price">$4.00</div>
+                    </div>
+                </div>
+
+                <!-- 5. Hot Chocolate -->
+                <div class="drink-card" data-category="non-coffee specials">
+                    <div class="drink-card-image">
+                        <img src="images/card-hot-chocolate.jpg" alt="Hot Chocolate">
+                    </div>
+                    <div class="drink-card-info">
+                        <div>
+                            <h3 class="drink-card-name">Hot Chocolate</h3>
+                            <p class="drink-card-desc">Rich chocolate, warm comfort.</p>
+                        </div>
+                        <div class="drink-card-price">$3.50</div>
+                    </div>
+                </div>
+
+                <!-- 6. Matcha Latte -->
+                <div class="drink-card" data-category="non-coffee specials">
+                    <div class="drink-card-image">
+                        <img src="images/card-matcha.jpg" alt="Matcha Latte">
+                    </div>
+                    <div class="drink-card-info">
+                        <div>
+                            <h3 class="drink-card-name">Matcha Latte</h3>
+                            <p class="drink-card-desc">Earthy, creamy & full of energy.</p>
+                        </div>
+                        <div class="drink-card-price">$4.50</div>
+                    </div>
+                </div>
+
+                <!-- 7. Baby Iced Latte -->
+                <div class="drink-card" data-category="coffee specials">
+                    <div class="drink-card-image">
+                        <img src="images/card-baby-latte.jpg" alt="Baby Iced Latte">
+                    </div>
+                    <div class="drink-card-info">
+                        <div>
+                            <h3 class="drink-card-name">Baby Iced Latte</h3>
+                            <p class="drink-card-desc">Mini iced latte, big on flavor.</p>
+                        </div>
+                        <div class="drink-card-price">$2.50</div>
+                    </div>
+                </div>
+
+                <!-- 8. Mojito -->
+                <div class="drink-card" data-category="non-coffee specials">
+                    <div class="drink-card-image">
+                        <img src="images/card-mojito.jpg" alt="Mojito">
+                    </div>
+                    <div class="drink-card-info">
+                        <div>
+                            <h3 class="drink-card-name">Mojito</h3>
+                            <p class="drink-card-desc">Fresh mint, lime & sparkling chill.</p>
+                        </div>
+                        <div class="drink-card-price">$4.00</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== ABOUT / OUR STORY SECTION ===== -->
+    <section class="about-section" id="about">
+        <div class="about-container">
+            <!-- Left Column: Story & Features -->
+            <div class="about-text-column">
+                <div class="section-pill-tag">About Us</div>
+                <h2 class="about-title">Our Story</h2>
+                <p class="about-p">
+                    <strong>Bunt</strong> Coffee was born from a simple idea — to bring people together over great coffee. We source the finest beans, craft each drink with care, and create a space where good conversations and great flavors meet.
+                </p>
+                <p class="about-p">
+                    More than just a coffee shop, Bunt Coffee is a community, a place to relax, work, and feel at home.
+                </p>
+
+                <div class="features-grid">
+                    <!-- Feature 1 -->
+                    <div class="feature-box">
+                        <svg class="feature-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M18 8h1a4 4 0 0 1 0 8h-1"/>
+                            <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/>
+                            <line x1="6" y1="1" x2="6" y2="4"/>
+                            <line x1="10" y1="1" x2="10" y2="4"/>
+                            <line x1="14" y1="1" x2="14" y2="4"/>
+                        </svg>
+                        <span class="feature-name">Premium<br>Coffee Beans</span>
+                    </div>
+
+                    <!-- Feature 2 -->
+                    <div class="feature-box">
+                        <svg class="feature-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/>
+                            <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/>
+                        </svg>
+                        <span class="feature-name">Freshly<br>Made</span>
+                    </div>
+
+                    <!-- Feature 3 -->
+                    <div class="feature-box">
+                        <svg class="feature-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
+                        </svg>
+                        <span class="feature-name">Cozy<br>Atmosphere</span>
+                    </div>
+
+                    <!-- Feature 4 -->
+                    <div class="feature-box">
+                        <svg class="feature-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                            <circle cx="9" cy="7" r="4"/>
+                            <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                        </svg>
+                        <span class="feature-name">A Place for<br>Everyone</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Visual Composition -->
+            <div class="about-image-column">
+                <img src="images/about-composition.jpg" alt="Good Coffee Brings People Together - Bunt Coffee" class="about-composition-img">
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SOCIAL MEDIA FOOTER ===== -->
+    <footer class="social-footer" id="contact">
+        <img src="images/bunt-logo.jpg" alt="Bunt Coffee" class="footer-logo">
+        <p class="footer-tagline">Find Us Online</p>
+        <p class="footer-sub">Follow us for daily brews, stories & good vibes.</p>
+
+        <div class="social-icons">
+
+            <!-- TikTok -->
+            <a class="social-link tiktok" href="https://www.tiktok.com/@bunt.coffe" target="_blank" rel="noopener" title="Bunt Coffee on TikTok">
+                <svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.28 6.28 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.88a8.27 8.27 0 004.84 1.55V7a4.85 4.85 0 01-1.07-.31z"/>
+                </svg>
+                <span class="social-label">TikTok</span>
+            </a>
+
+            <!-- Instagram (placeholder — update link when ready) -->
+            <a class="social-link instagram" href="https://www.instagram.com/" target="_blank" rel="noopener" title="Bunt Coffee on Instagram" id="instagramLink">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke="white" stroke-width="2" fill="none"/>
+                    <circle cx="12" cy="12" r="4" stroke="white" stroke-width="2" fill="none"/>
+                    <circle cx="17.5" cy="6.5" r="1" fill="white"/>
+                </svg>
+                <span class="social-label">Instagram</span>
+            </a>
+
+            <!-- WhatsApp -->
+            <a class="social-link whatsapp" href="https://wa.me/" target="_blank" rel="noopener" title="Chat with Bunt Coffee on WhatsApp" id="whatsappLink">
+                <svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+                </svg>
+                <span class="social-label">WhatsApp</span>
+            </a>
+
+        </div>
+
+        <div class="footer-divider"></div>
+        <p class="footer-copy">© 2024 Bunt Coffee. All rights reserved. Crafted with ☕ & love.</p>
+    </footer>
+
+    <!-- ===== VISIT US MODAL ===== -->
+    <div class="modal-overlay" id="visitModal">
+        <div class="modal-card">
+            <button class="modal-close" id="closeVisitModal">&times;</button>
+            <img src="images/bunt-logo.jpg" alt="Bunt Coffee" class="modal-logo">
+            <h3 class="modal-title">Welcome to Bunt Coffee</h3>
+            <p class="modal-desc">Drop by for handcrafted specialty coffee, freshly baked treats, and warm community vibes.</p>
+            
+            <div class="modal-info-list">
+                <div class="modal-info-row">
+                    <strong>📍 Location:</strong> 124 Artisan Avenue, Coffee District
+                </div>
+                <div class="modal-info-row">
+                    <strong>🕒 Mon – Fri:</strong> 7:00 AM – 8:00 PM
+                </div>
+                <div class="modal-info-row">
+                    <strong>🕒 Sat – Sun:</strong> 8:00 AM – 9:00 PM
+                </div>
+                <div class="modal-info-row">
+                    <strong>📞 Tel:</strong> (555) 019-2834
+                </div>
+            </div>
+
+            <button class="btn-visit" style="width: 100%; justify-content: center;" onclick="document.getElementById('visitModal').classList.remove('open')">
+                See You Soon!
+            </button>
+        </div>
+    </div>
+
+    <!-- ===== JAVASCRIPT ===== -->
+    <script>
+        // Menu Filter Tabs Functionality
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const drinkCards = document.querySelectorAll('.drink-card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const filter = btn.dataset.filter;
+
+                drinkCards.forEach(card => {
+                    const categories = card.dataset.category.split(' ');
+                    if (filter === 'all' || categories.includes(filter)) {
+                        card.style.display = 'flex';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Smooth Navigation & Active Indicator
+        const navLinks = document.querySelectorAll('.navbar-nav a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', e => {
+                e.preventDefault();
+                const target = document.querySelector(link.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+                navLinks.forEach(l => l.classList.remove('active'));
+                link.classList.add('active');
+            });
+        });
+
+        // Update active link on scroll
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section');
+            let current = '#hero';
+            sections.forEach(s => {
+                if (window.scrollY >= s.offsetTop - 140) {
+                    current = '#' + s.id;
+                }
+            });
+            navLinks.forEach(link => {
+                link.classList.toggle('active', link.getAttribute('href') === current);
+            });
+        });
+
+        // Visit Us Modal
+        const visitModal = document.getElementById('visitModal');
+        const openVisitBtn = document.getElementById('openVisitModal');
+        const closeVisitBtn = document.getElementById('closeVisitModal');
+
+        openVisitBtn.addEventListener('click', () => visitModal.classList.add('open'));
+        closeVisitBtn.addEventListener('click', () => visitModal.classList.remove('open'));
+        visitModal.addEventListener('click', e => {
+            if (e.target === visitModal) visitModal.classList.remove('open');
+        });
+    </script>
+</body>
+</html>
